@@ -1,22 +1,21 @@
 package com.example.inicial1.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
-@ToString
+@Table(name = "Domicilio")
+@Data
 @Builder
-public class Domicilio {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Domicilio extends Base {
+
+    @Column(name = "Calle")
     private String calle;
+
+    @Column(name = "Numero")
     private int numero;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "fk_Localidad")
+    private Localidad localidad;
 }
